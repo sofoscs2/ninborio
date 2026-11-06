@@ -1,0 +1,10 @@
+{
+  "_help": "Links of Facebook posts to show in the News section, newest first. On Facebook: ⋯ on the post → Copy link, then paste it here. On the live site with api/config.php set up, the latest posts are found automatically and this list is only a backup.",
+  "posts": [
+    "https://www.facebook.com/Nimborio/posts/pfbid01GHEBRyD5xWHePzv8NNkbLMnG2XZjcyog7bfD7qmGt4GHVggme94ZxaTNcCw3ucul",
+    "https://www.facebook.com/Nimborio/posts/pfbid02Kd5V4DjfG24XUrPioy5KTh3s9EBqXLcYa6Cyw2KwQsiWcBaAsPASiFBendejSeJWl",
+    "https://www.facebook.com/Nimborio/posts/pfbid02hL3z2aKZWFduocUQoXsZJnEEVttL37c6R2ZFDZy7eQ2ERSbjL1Nqzu5JuqgMuzZFl",
+    "https://www.facebook.com/Nimborio/posts/pfbid02AayiycmE1hZsgbnGDkRzrV5UizBCMxuN9okSM7acuDeK1N7a9cQ4oUabJ1M65PCXl",
+    "https://www.facebook.com/Nimborio/posts/pfbid02x2eyaoY5HcL5egUPLCXWLyE6sBXrQk3F1BynfqeDMdtwMoz7GroKN1n3TpJU9Fsbl"
+  ]
+}

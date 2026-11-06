@@ -1,0 +1,22 @@
+{
+  "name": "nimborio-vue",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite-ssg build && node -e \"require('fs').rmSync('dist/.vite',{recursive:true,force:true})\"",
+    "preview": "npx --yes http-server@14.1.1 dist -p 8090 -c-1",
+    "posts": "node scripts/posts-from-html.mjs"
+  },
+  "dependencies": {
+    "@unhead/vue": "^2.1.17",
+    "vue": "^3.5.0",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.10",
+    "vite": "^7.3.7",
+    "vite-ssg": "^28.3.0"
+  }
+}

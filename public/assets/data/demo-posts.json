@@ -1,0 +1,61 @@
+{
+  "note": "Example posts shown only on your own computer, to preview the design. Not real news.",
+  "posts": [
+    {
+      "id": "demo-1",
+      "text": "Καθαρισμός της παραλίας την Κυριακή στις 10:00! Ελάτε με γάντια και καλή διάθεση, σακούλες και νερό θα έχουμε εμείς.\nΜαζευόμαστε μπροστά στην καντίνα. Μετά, καφές για όλους.\nΠερισσότερα: https://www.facebook.com/Nimborio/\n#Εθελοντισμός #Νημποριό",
+      "images": ["assets/img/crops/beach.webp", "assets/img/crops/bay.webp", "assets/img/crops/coves.webp"],
+      "type": "album",
+      "url": "https://www.facebook.com/Nimborio/",
+      "date": "2026-11-01T09:30:00+0000"
+    },
+    {
+      "id": "demo-2",
+      "text": "Γενική συνέλευση του Συλλόγου\nΗ ετήσια συνέλευση θα γίνει στο προαύλιο του Προφήτη Ηλία. Θα συζητήσουμε για τον δρόμο, το νερό και τις καλοκαιρινές εκδηλώσεις.",
+      "images": ["assets/img/crops/village.webp"],
+      "type": "event",
+      "url": "https://www.facebook.com/Nimborio/",
+      "date": "2026-10-28T16:00:00+0000"
+    },
+    {
+      "id": "demo-3",
+      "text": "Τι ηλιοβασίλεμα απόψε πάνω από τον κόλπο! 🌅 #Ηλιοβασίλεμα",
+      "images": ["assets/img/hero/bay-1200.webp"],
+      "type": "photo",
+      "url": "https://www.facebook.com/Nimborio/",
+      "date": "2026-10-24T17:45:00+0000"
+    },
+    {
+      "id": "demo-4",
+      "text": "Ξεκίνησαν οι εργασίες στον δρόμο προς τα Κάψαλα. Οδηγείτε προσεκτικά τις επόμενες δύο εβδομάδες, ιδίως στις στροφές πάνω από τον όρμο.",
+      "images": ["assets/img/crops/coast.webp"],
+      "type": "photo",
+      "url": "https://www.facebook.com/Nimborio/",
+      "date": "2026-10-19T08:10:00+0000"
+    },
+    {
+      "id": "demo-5",
+      "text": "Βίντεο από το drone: ο κόλπος όπως δεν τον έχετε ξαναδεί.",
+      "images": ["assets/img/crops/bay.webp"],
+      "type": "video",
+      "url": "https://www.facebook.com/Nimborio/",
+      "date": "2026-10-12T12:00:00+0000"
+    },
+    {
+      "id": "demo-6",
+      "text": "Ευχαριστούμε όλους όσοι ήρθατε στη γιορτή του Αγίου Ιωάννη. Ραντεβού του χρόνου!",
+      "images": [],
+      "type": "text",
+      "url": "https://www.facebook.com/Nimborio/",
+      "date": "2026-09-30T19:00:00+0000"
+    },
+    {
+      "id": "demo-7",
+      "text": "Οι νέοι κάδοι ανακύκλωσης τοποθετήθηκαν δίπλα στο πάρκινγκ. Ας τους χρησιμοποιούμε σωστά!",
+      "images": ["assets/img/crops/village.webp"],
+      "type": "photo",
+      "url": "https://www.facebook.com/Nimborio/",
+      "date": "2026-09-21T10:00:00+0000"
+    }
+  ]
+}

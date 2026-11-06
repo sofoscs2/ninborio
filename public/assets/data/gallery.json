@@ -1,0 +1,434 @@
+{
+  "photos": [
+    {
+      "file": "o-kolpos",
+      "title": "Ο κόλπος του Νημποριού",
+      "category": "Θάλασσα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1800,
+      "h": 1151
+    },
+    {
+      "file": "apo-psila",
+      "title": "Ο κόλπος και ο οικισμός από ψηλά",
+      "category": "Θάλασσα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1600,
+      "h": 900
+    },
+    {
+      "file": "istioforo",
+      "title": "Ιστιοφόρο στα γαλαζοπράσινα νερά",
+      "category": "Θάλασσα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1000,
+      "h": 700
+    },
+    {
+      "file": "psathini-omprela",
+      "title": "Ψάθινη ομπρέλα στην παραλία",
+      "category": "Παραλία",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1800,
+      "h": 1205
+    },
+    {
+      "file": "varka-stin-ammo",
+      "title": "Βάρκα στην ακτή",
+      "category": "Παραλία",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1200,
+      "h": 800
+    },
+    {
+      "file": "petres-kai-nera",
+      "title": "Πέτρες και καθαρά νερά",
+      "category": "Παραλία",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1200,
+      "h": 800
+    },
+    {
+      "file": "votsala",
+      "title": "Βότσαλα",
+      "category": "Παραλία",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1800,
+      "h": 1200
+    },
+    {
+      "file": "iliovasilema",
+      "title": "Ηλιοβασίλεμα στον Ευβοϊκό",
+      "category": "Ηλιοβασιλέματα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1800,
+      "h": 1350
+    },
+    {
+      "file": "sourouro",
+      "title": "Σούρουπο πάνω από τη θάλασσα",
+      "category": "Ηλιοβασιλέματα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1800,
+      "h": 1263
+    },
+    {
+      "file": "varkoules-to-sourouro",
+      "title": "Βαρκούλες στο σούρουπο",
+      "category": "Ηλιοβασιλέματα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 960,
+      "h": 720
+    },
+    {
+      "file": "o-oikismos-apo-to-vouno",
+      "title": "Ο οικισμός από το βουνό",
+      "category": "Οικισμός",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1800,
+      "h": 1032
+    },
+    {
+      "file": "spitia-me-thea",
+      "title": "Σπίτια με θέα στον Ευβοϊκό",
+      "category": "Οικισμός",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1800,
+      "h": 1205
+    },
+    {
+      "file": "ekklisaki",
+      "title": "Το εκκλησάκι",
+      "category": "Οικισμός",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1200,
+      "h": 800
+    },
+    {
+      "file": "pigadi",
+      "title": "Το πηγάδι",
+      "category": "Οικισμός",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1800,
+      "h": 1171
+    },
+    {
+      "file": "parathyro",
+      "title": "Μπλε παράθυρο",
+      "category": "Οικισμός",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 814,
+      "h": 1200
+    },
+    {
+      "file": "spiti-sto-kyma",
+      "title": "Σπίτι δίπλα στο κύμα",
+      "category": "Οικισμός",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "varkoula-ston-kolpo",
+      "title": "Βαρκούλα στον κόλπο",
+      "category": "Θάλασσα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1200,
+      "h": 800
+    },
+    {
+      "file": "kaiki",
+      "title": "Καΐκι στον μόλο",
+      "category": "Θάλασσα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1200,
+      "h": 800
+    },
+    {
+      "file": "molos",
+      "title": "Ο μόλος",
+      "category": "Θάλασσα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "",
+      "placeholder": false,
+      "w": 859,
+      "h": 568
+    },
+    {
+      "file": "thea-ston-evvoiko",
+      "title": "Θέα στον Ευβοϊκό",
+      "category": "Θάλασσα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1800,
+      "h": 718
+    },
+    {
+      "file": "panorama",
+      "title": "Πανόραμα του κόλπου",
+      "category": "Θάλασσα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1800,
+      "h": 586
+    },
+    {
+      "file": "o-kolpos-apo-to-dromo",
+      "title": "Ο κόλπος από τον δρόμο",
+      "category": "Θάλασσα",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1716,
+      "h": 701
+    },
+    {
+      "file": "monopati",
+      "title": "Πέτρινο μονοπάτι",
+      "category": "Φύση",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2019",
+      "placeholder": false,
+      "w": 1200,
+      "h": 800
+    },
+    {
+      "file": "archaios-kionas",
+      "title": "Αρχαίος κίονας στα ρωμαϊκά λατομεία",
+      "category": "Ιστορία",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2026",
+      "placeholder": false,
+      "w": 1800,
+      "h": 1350
+    },
+    {
+      "file": "palio-nimporio",
+      "title": "Το παλιό Νημποριό",
+      "category": "Ιστορία",
+      "credit": "Αρχείο Δημήτρη Σινέκογλου",
+      "date": "",
+      "placeholder": false,
+      "w": 1180,
+      "h": 1580
+    },
+    {
+      "file": "palio-spiti",
+      "title": "Παλιό σπίτι στην ακτή",
+      "category": "Ιστορία",
+      "credit": "Αρχείο Δημήτρη Σινέκογλου",
+      "date": "",
+      "placeholder": false,
+      "w": 1180,
+      "h": 1580
+    },
+    {
+      "file": "xoroi",
+      "title": "Χοροί στο προαύλιο",
+      "category": "Εκδηλώσεις",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2026",
+      "placeholder": false,
+      "w": 1600,
+      "h": 1200
+    },
+    {
+      "file": "therini-provoli",
+      "title": "Θερινή προβολή",
+      "category": "Εκδηλώσεις",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2026",
+      "placeholder": false,
+      "w": 1286,
+      "h": 965
+    },
+    {
+      "file": "simaia-syllogou",
+      "title": "Η σημαία του Συλλόγου",
+      "category": "Εκδηλώσεις",
+      "credit": "Αρχείο Συλλόγου Νημποριού",
+      "date": "2026",
+      "placeholder": false,
+      "w": 1320,
+      "h": 804
+    },
+    {
+      "file": "placeholder-01-paralia",
+      "title": "Η αμμουδιά από ψηλά",
+      "category": "Παραλία",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 1100,
+      "h": 620
+    },
+    {
+      "file": "placeholder-02-oikismos",
+      "title": "Τα σπίτια του οικισμού",
+      "category": "Οικισμός",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 420,
+      "h": 320
+    },
+    {
+      "file": "placeholder-03-ammoudia",
+      "title": "Χρυσή άμμος, τιρκουάζ νερά",
+      "category": "Παραλία",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 480,
+      "h": 640
+    },
+    {
+      "file": "placeholder-04-notioi-ormoi",
+      "title": "Οι νότιοι όρμοι",
+      "category": "Θάλασσα",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 700,
+      "h": 560
+    },
+    {
+      "file": "placeholder-05-kavos",
+      "title": "Ο κάβος",
+      "category": "Θάλασσα",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 500,
+      "h": 500
+    },
+    {
+      "file": "placeholder-06-anatoliki-akti",
+      "title": "Η ανατολική ακτή",
+      "category": "Θάλασσα",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 900,
+      "h": 500
+    },
+    {
+      "file": "placeholder-07-kryfos-ormos",
+      "title": "Ο κρυφός όρμος",
+      "category": "Παραλία",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 380,
+      "h": 520
+    },
+    {
+      "file": "placeholder-08-vouna",
+      "title": "Τα βουνά πάνω από τον κόλπο",
+      "category": "Φύση",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 1300,
+      "h": 560
+    },
+    {
+      "file": "placeholder-09-vathy-mple",
+      "title": "Βαθύ μπλε",
+      "category": "Θάλασσα",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 900,
+      "h": 600
+    },
+    {
+      "file": "placeholder-10-lofoi",
+      "title": "Οι λόφοι στα δυτικά",
+      "category": "Φύση",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 800,
+      "h": 700
+    },
+    {
+      "file": "placeholder-11-dromos",
+      "title": "Ο δρόμος από τα Κάψαλα",
+      "category": "Φύση",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 900,
+      "h": 420
+    },
+    {
+      "file": "placeholder-12-olos-o-kolpos",
+      "title": "Όλος ο κόλπος",
+      "category": "Θάλασσα",
+      "credit": "",
+      "date": "",
+      "placeholder": true,
+      "w": 1800,
+      "h": 975
+    },
+    {
+      "file": "placeholder-13-xartis-day",
+      "title": "Χάρτης του κόλπου (μέρα)",
+      "category": "Χάρτες",
+      "credit": "nimporio.gr / © OpenStreetMap",
+      "date": "",
+      "placeholder": true,
+      "w": 1800,
+      "h": 753
+    },
+    {
+      "file": "placeholder-14-xartis-night",
+      "title": "Χάρτης του κόλπου (νύχτα)",
+      "category": "Χάρτες",
+      "credit": "nimporio.gr / © OpenStreetMap",
+      "date": "",
+      "placeholder": true,
+      "w": 1800,
+      "h": 753
+    }
+  ]
+}
