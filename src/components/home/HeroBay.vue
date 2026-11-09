@@ -1,7 +1,7 @@
 <script setup>
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
 import { rand, reduceMotion } from '../../lib/util.js';
-import { useWeather } from '../../composables/useWeather.js';
+import { useWeather, loadWeather } from '../../composables/useWeather.js';
 
 const wx = useWeather();
 const phase = ref('day');      // dawn · day · golden · dusk · night
@@ -38,6 +38,7 @@ function onScroll() {
 }
 
 onMounted(() => {
+  loadWeather(); // air, sea and sunset chips
   // Ripples: short bright arcs drifting over the water
   ripples.value = Array.from({ length: 70 }, () => {
     const x = rand(700, 2850), y = rand(640, 1500), w = rand(30, 90);
@@ -145,7 +146,7 @@ onBeforeUnmount(() => { clearInterval(timer); removeEventListener('scroll', onSc
         <span class="chip" id="chip-sun">🌅 δύση <b>{{ wx.chipSun }}</b></span>
       </div>
       <div class="cta">
-        <a class="btn btn-sun" href="#prosvasi">Πώς θα έρθετε</a>
+        <RouterLink class="btn btn-sun" to="/prosvasi/">Πώς θα έρθετε</RouterLink>
         <a class="btn btn-ghost" href="#nea">Τα νέα μας</a>
       </div>
     </div>

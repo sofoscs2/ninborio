@@ -2,7 +2,6 @@
 import { useHead } from '@unhead/vue';
 import SiteLayout from '../components/SiteLayout.vue';
 import WaveEdge from '../components/WaveEdge.vue';
-import { STAY_NAV, STAY_FOOTER } from '../lib/menus.js';
 
 useHead({
   title: 'Διαμονή & Φαγητό · Νημποριό Εύβοιας',
@@ -27,7 +26,7 @@ const ROOMS = [
 </script>
 
 <template>
-  <SiteLayout :nav="STAY_NAV" :footer="STAY_FOOTER">
+  <SiteLayout>
     <section class="page-hero">
       <div class="wrap">
         <p class="kicker" style="color:var(--sun)">Νημποριό · Νότια Εύβοια</p>

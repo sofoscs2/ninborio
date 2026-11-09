@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import posts from './src/data/posts.json' with { type: 'json' };
+import { SHOW_UPDATES } from './src/lib/options.js';
 
 export default defineConfig({
   plugins: [vue()],
@@ -9,7 +10,8 @@ export default defineConfig({
     dirStyle: 'nested',
     formatting: 'none',
     includedRoutes(paths) {
-      return paths.filter((p) => !p.includes(':')).concat(posts.posts.map((p) => `/enimeroseis/${p.slug}/`));
+      const pages = paths.filter((p) => !p.includes(':'));
+      return SHOW_UPDATES ? pages.concat(posts.posts.map((p) => `/enimeroseis/${p.slug}/`)) : pages;
     },
   },
 });

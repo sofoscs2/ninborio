@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite-ssg build && node -e \"require('fs').rmSync('dist/.vite',{recursive:true,force:true})\"",
+    "build": "vite-ssg build && node scripts/after-build.mjs",
     "preview": "npx --yes http-server@14.1.1 dist -p 8090 -c-1",
-    "posts": "node scripts/posts-from-html.mjs"
+    "posts": "node scripts/posts-from-html.mjs",
+    "routes": "node scripts/routes.mjs"
   },
   "dependencies": {
     "@unhead/vue": "^2.1.17",
+    "leaflet": "^1.9.4",
     "vue": "^3.5.0",
     "vue-router": "^4.6.4"
   },

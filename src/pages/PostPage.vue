@@ -4,7 +4,6 @@ import { useRoute, useRouter } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import SiteLayout from '../components/SiteLayout.vue';
 import WaveEdge from '../components/WaveEdge.vue';
-import { subNav, SUB_FOOTER } from '../lib/menus.js';
 import data from '../data/posts.json';
 
 const route = useRoute(), router = useRouter();
@@ -62,7 +61,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <SiteLayout v-if="post" :nav="subNav('/enimeroseis/')" :footer="SUB_FOOTER">
+  <SiteLayout v-if="post">
     <section class="page-hero art-hero">
       <div class="wrap">
         <p class="kicker" style="color:var(--sun)"><RouterLink to="/enimeroseis/">Ενημερώσεις</RouterLink> · {{ post.category }}</p>

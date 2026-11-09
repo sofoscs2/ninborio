@@ -3,7 +3,6 @@ import { ref, reactive, computed, nextTick, onMounted, onBeforeUnmount } from 'v
 import { useHead } from '@unhead/vue';
 import SiteLayout from '../components/SiteLayout.vue';
 import WaveEdge from '../components/WaveEdge.vue';
-import { GALLERY_NAV, GALLERY_FOOTER } from '../lib/menus.js';
 import { setHash } from '../lib/util.js';
 
 useHead({
@@ -165,7 +164,7 @@ onBeforeUnmount(() => { removeEventListener('hashchange', openFromHash); removeE
 </script>
 
 <template>
-  <SiteLayout :nav="GALLERY_NAV" :footer="GALLERY_FOOTER">
+  <SiteLayout>
     <section class="page-hero gallery-hero">
       <div class="wrap">
         <p class="kicker" style="color:var(--sun)">Νημποριό · Νότια Εύβοια</p>

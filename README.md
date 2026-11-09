@@ -13,7 +13,7 @@ The same site as `C:\projects\nimborio`, rebuilt with **Vue 3 + Vite**. Every pa
 npm install
 npm run dev
 ```
-Open http://localhost:5173. Address options: `?phase=night` (or `dawn`, `day`, `golden`, `dusk`); `?fb=embeds` (news as Facebook's own boxes), `?fb=plugin` (Facebook Page box), `?fb=demo` (example posts).
+Open http://localhost:5173. Address options: `?phase=night` (or `dawn`, `day`, `golden`, `dusk`); for the news on the home page: `?fb=embeds` (news as Facebook's own boxes), `?fb=plugin` (Facebook Page box), `?fb=demo` (example posts).
 
 The news section shows the latest Facebook posts in the site's own design: 3 at first, then 4 more with each "Περισσότερα νέα". On this computer there is no PHP, so it shows the example posts instead. On the live site, if Facebook can't be reached, it falls back to Facebook's own boxes for the links in `fb-posts.json`.
 
@@ -32,10 +32,11 @@ Then open http://localhost:8090.
 | `index.html` | The page frame shared by all pages (fonts, icon) |
 | `src/main.js` | Starts Vue and the page router (scrolling to `#parts` of a page) |
 | `src/routes.js` | The list of pages and their addresses |
-| `src/pages/` | One file per page: `HomePage`, `StayPage`, `GalleryPage`, `NewsPage`, `PostPage` (each archive post), `AssociationPage`, `UsefulPage` |
+| `src/pages/` | One file per page: `HomePage` (/: news, weather, EMY, fire map), `BeachPage` (/paralia/), `HistoryPage` (/istoria/), `AroundPage` (/gyro/), `AccessPage` (/prosvasi/), `StayPage`, `GalleryPage`, `NewsPage` (/enimeroseis/), `PostPage` (each archive post), `AssociationPage`, `UsefulPage` |
 | `src/components/` | Parts shared by pages: top bar, footer, wave edge |
-| `src/components/home/` | Home page parts: `HeroBay` (aerial view with effects), `NewsFeed` + `NewsReader` (Facebook), `FireMap`, `EmyStation`, `WeatherCard` |
-| `src/lib/menus.js` | The menu and footer links of each page |
+| `src/components/home/` | `HeroBay` (aerial view on the home page), `NewsFeed` + `NewsReader` (Facebook news), `FireMap`, `EmyStation`, `WeatherCard`: all on the home page |
+| `src/lib/menus.js` | The one menu used in the top bar and footer of every page. Old links to parts of the home page (`/#paralia`, `/#prosvasi` …) are sent to their own pages (see `src/routes.js`) |
+| `src/data/routes.json` | The 3 routes from Athens drawn on the Πρόσβαση map, with their distances and times (made by `npm run routes`, which asks OpenStreetMap and the OSRM route planner) |
 | `src/data/posts.json` | The 20 posts of the old WordPress site (made by `npm run posts`) |
 | `src/styles/site.css` | All styles and colours (unchanged from the plain-HTML site) |
 | `public/` | Copied as-is into the site: images, PDFs, `gallery.json`, `fb-posts.json`, `api/facebook.php`, `.htaccess` |
@@ -44,6 +45,8 @@ Then open http://localhost:8090.
 ## Changing content
 
 - **Text of a page**: edit the page in `src/pages/`.
+- **Routes on Πρόσβαση**: the steps and links are in `src/pages/AccessPage.vue`. To recalculate the lines on the map and the distances and times, run `npm run routes`.
+- **Hide or show a part of the site**: in `src/lib/options.js`, set `SHOW_UPDATES` ("Ενημερώσεις", the archive and its 20 old posts) or `SHOW_STAY` ("Διαμονή & Φαγητό", the page and its box on the home page) to `false` (hidden, as now) or `true`, then build and upload again. While a part is hidden, its addresses and the old WordPress links to it lead to the home page.
 - **Facebook posts list** (backup when PHP is off): `public/assets/data/fb-posts.json`, newest first.
 - **Photo gallery**: as before, run `npm run gallery` in `C:\projects\nimborio`, then copy `assets/img/gallery/` and `assets/data/gallery.json` into `public/assets/`.
 - **Archive posts**: they come from the plain-HTML site. After `npm run import-wp` there, run `npm run posts` here. Copy any new images from `assets/img/archive/` into `public/assets/img/archive/`.

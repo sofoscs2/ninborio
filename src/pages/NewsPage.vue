@@ -3,7 +3,6 @@ import { ref, computed } from 'vue';
 import { useHead } from '@unhead/vue';
 import SiteLayout from '../components/SiteLayout.vue';
 import WaveEdge from '../components/WaveEdge.vue';
-import { subNav, SUB_FOOTER } from '../lib/menus.js';
 import data from '../data/posts.json';
 
 useHead({
@@ -25,7 +24,7 @@ const firstShown = computed(() => shownPosts.value.find((p) => p.show));
 </script>
 
 <template>
-  <SiteLayout :nav="subNav('/enimeroseis/')" :footer="SUB_FOOTER">
+  <SiteLayout>
     <section class="page-hero archive-hero">
       <div class="wrap">
         <p class="kicker" style="color:var(--sun)">{{ data.kicker }}</p>

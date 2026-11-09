@@ -2,7 +2,6 @@
 import { useHead } from '@unhead/vue';
 import SiteLayout from '../components/SiteLayout.vue';
 import WaveEdge from '../components/WaveEdge.vue';
-import { subNav, SUB_FOOTER } from '../lib/menus.js';
 
 useHead({
   title: 'Χρήσιμες πληροφορίες & τηλέφωνα · Νημποριό Εύβοιας',
@@ -26,7 +25,7 @@ const PHONES = [
 </script>
 
 <template>
-  <SiteLayout :nav="subNav('/xrisima/')" :footer="SUB_FOOTER">
+  <SiteLayout>
     <section class="page-hero xr-hero">
       <div class="wrap">
         <p class="kicker" style="color:#fff3c4">Νημποριό · Νότια Εύβοια</p>
