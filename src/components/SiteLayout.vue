@@ -19,5 +19,5 @@ useReveal();
   <a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
   <SiteHeader :links="links" :id="headerId" />
   <slot />
-  <SiteFooter :links="MENU" :credits="credits" />
+  <SiteFooter :credits="credits" />
 </template>

@@ -1,8 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import SiteLink from './SiteLink.vue';
 
-defineProps({ links: { type: Array, required: true }, credits: Boolean });
+defineProps({ credits: Boolean });
 const year = ref(2026);
 onMounted(() => { year.value = new Date().getFullYear(); });
 </script>
@@ -15,10 +14,7 @@ onMounted(() => { year.value = new Date().getFullYear(); });
         <p class="f-brand">Νημποριό</p>
         <p>Νότια Εύβοια · 38.1227° Β, 24.2122° Α</p>
       </div>
-      <nav aria-label="Υποσέλιδο">
-        <SiteLink v-for="l in links" :key="l.href" :href="l.href">{{ l.label }}</SiteLink>
-      </nav>
-      <div>
+      <div class="f-side">
         <a class="btn btn-fb small" href="https://www.facebook.com/Nimborio/" target="_blank" rel="noopener">Facebook</a>
         <p v-if="credits" class="tiny">Καιρός: Open-Meteo · Χάρτης: © OpenStreetMap · Κίνδυνος πυρκαγιάς: ΓΓΠΠ</p>
         <p class="tiny">© <span id="year">{{ year }}</span> nimborio.com</p>

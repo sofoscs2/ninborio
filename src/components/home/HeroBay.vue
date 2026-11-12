@@ -82,6 +82,7 @@ onBeforeUnmount(() => { clearInterval(timer); removeEventListener('scroll', onSc
             <polygon points="2800,537 2567,600 2330,660 2100,680 1900,690 1760,650 1500,612 1213,598 1100,650 960,740 870,800 820,870 790,960 700,1020 650,1075 700,1110 860,1090 1030,1130 1000,1200 900,1280 760,1360 720,1420 780,1440 950,1395 1100,1380 1080,1450 1070,1500 2800,1500"/>
           </clipPath>
           <radialGradient id="glint"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          <radialGradient id="sun-gold"><stop offset="0" stop-color="#fff1c4" stop-opacity=".95"/><stop offset=".25" stop-color="#ffc35a" stop-opacity=".75"/><stop offset=".6" stop-color="#ff9a3c" stop-opacity=".35"/><stop offset="1" stop-color="#ff8030" stop-opacity="0"/></radialGradient>
           <radialGradient id="lamp"><stop offset="0" stop-color="#fff6c8"/><stop offset=".35" stop-color="#ffc85a" stop-opacity=".9"/><stop offset="1" stop-color="#ff9a2e" stop-opacity="0"/></radialGradient>
           <radialGradient id="puff"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".6" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
           <radialGradient id="shade"><stop offset="0" stop-color="#001a2c" stop-opacity=".5"/><stop offset="1" stop-color="#001a2c" stop-opacity="0"/></radialGradient>
@@ -105,7 +106,7 @@ onBeforeUnmount(() => { clearInterval(timer); removeEventListener('scroll', onSc
           <g id="sailboat">
             <path class="wake" d="M-20 0 L-170 -26 M-20 0 L-170 26" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
             <path d="M-22 -8 Q8 -9 24 0 Q8 9 -22 8 Z" fill="#fff"/>
-            <path d="M-8 0 L14 0 L-4 -34 Z" fill="#ff6b4a" opacity=".95"/>
+            <path d="M-8 0 L14 0 L-4 -34 Z" fill="currentColor" opacity=".95"/>
           </g>
           <g id="gull"><path d="M-22 0 Q-11 -10 0 0 Q11 -10 22 0" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/></g>
         </defs>
@@ -114,12 +115,15 @@ onBeforeUnmount(() => { clearInterval(timer); removeEventListener('scroll', onSc
         <g clip-path="url(#sea)">
           <g class="ripples"><path v-for="(p, i) in ripples" :key="i" :d="p.d" :stroke-width="p.sw" :style="p.style"/></g>
           <g class="glitter"><circle v-for="(c, i) in glitter" :key="i" :cx="c.cx" :cy="c.cy" :r="c.r" :style="c.style"/></g>
+          <ellipse class="sunpath" cx="1900" cy="1020" rx="820" ry="330" fill="url(#sun-gold)" transform="rotate(-10 1900 1020)"/>
           <ellipse class="moonpath" cx="2050" cy="1180" rx="160" ry="420" fill="url(#glint)"/>
         </g>
 
         <!-- boats -->
         <g class="mover mover-1"><g transform="rotate(-166)"><use href="#boat"/></g></g>
         <g class="mover mover-2"><g transform="rotate(-26)"><use href="#sailboat"/></g></g>
+        <g class="mover mover-3"><g transform="rotate(-164)"><use href="#sailboat"/></g></g>
+        <g class="mover mover-4"><g transform="rotate(-13)"><use href="#sailboat"/></g></g>
 
         <!-- village lights (shown at night) -->
         <g class="lights"><circle v-for="(l, i) in lights" :key="i" :cx="l.cx" :cy="l.cy" :r="l.r" :style="l.style"/></g>
@@ -139,7 +143,7 @@ onBeforeUnmount(() => { clearInterval(timer); removeEventListener('scroll', onSc
     <div class="hero-copy" :style="copyStyle">
       <p class="eyebrow">Νότια Εύβοια · Κόλπος Πεταλιών</p>
       <h1>Νημποριό</h1>
-      <p class="lead">Αμμουδιά, απάνεμα νερά και ησυχία. Απέναντι, ο Μαραθώνας.</p>
+      <p class="lead">Με το Σύλλογο Οικιστών κρατάμε την ομορφιά του κόλπου ζωντανή</p>
       <div class="chips" aria-live="polite">
         <span class="chip" id="chip-air">🌡️ <b>{{ wx.chipAir }}</b> αέρας</span>
         <span class="chip" id="chip-sea">🌊 <b>{{ wx.chipSea }}</b> θάλασσα</span>

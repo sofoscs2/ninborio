@@ -74,8 +74,17 @@ section { padding: clamp(56px, 9vw, 110px) 0; position: relative; }
 .hero[data-phase="day"] .hero-tint    { background: linear-gradient(160deg, rgba(255,240,180,.12), rgba(20,184,176,.10)); }
 .hero[data-phase="dawn"] .hero-img    { filter: saturate(1.1) brightness(.92) hue-rotate(-8deg); }
 .hero[data-phase="dawn"] .hero-tint   { background: linear-gradient(200deg, rgba(255,150,170,.45), rgba(255,200,120,.25) 45%, rgba(90,120,200,.25)); mix-blend-mode: soft-light; }
-.hero[data-phase="golden"] .hero-img  { filter: saturate(1.25) brightness(.95) sepia(.18); }
-.hero[data-phase="golden"] .hero-tint { background: linear-gradient(250deg, rgba(255,120,40,.10), rgba(255,170,60,.55) 50%, rgba(230,62,138,.45)); mix-blend-mode: soft-light; }
+.hero[data-phase="golden"] .hero-img  { filter: sepia(.42) saturate(1.5) brightness(1) hue-rotate(-6deg); }
+/* golden hour: a warm gold wash, brightest where the sun sets over the sea */
+.hero[data-phase="golden"] .hero-tint { background:
+  radial-gradient(ellipse 70% 60% at 85% 75%, rgba(255,214,110,.8), rgba(255,180,60,.35) 55%, transparent 80%),
+  linear-gradient(250deg, rgba(255,200,80,.55), rgba(255,170,50,.6) 50%, rgba(240,110,60,.45));
+  mix-blend-mode: soft-light; }
+/* the sun's golden path on the water (only at golden hour) */
+.sunpath { opacity: 0; transition: opacity 2.5s; }
+.hero[data-phase="golden"] .sunpath { opacity: .85; animation: sunpath 7s ease-in-out infinite; }
+@keyframes sunpath { 50% { opacity: .65; } }
+.hero[data-phase="golden"] .glitter { filter: sepia(1) saturate(5) hue-rotate(-8deg) brightness(1.1); opacity: 1; }
 .hero[data-phase="dusk"] .hero-img    { filter: saturate(.9) brightness(.62) hue-rotate(-12deg); }
 .hero[data-phase="dusk"] .hero-tint   { background: linear-gradient(250deg, rgba(255,110,80,.55), rgba(120,60,160,.5) 55%, rgba(10,30,80,.6)); mix-blend-mode: soft-light; }
 .hero[data-phase="night"] .hero-img   { filter: saturate(.55) brightness(.32) hue-rotate(15deg); }
@@ -101,6 +110,11 @@ section { padding: clamp(56px, 9vw, 110px) 0; position: relative; }
 @keyframes boat1 { from { transform: translate(2950px, 1330px); } to { transform: translate(1350px, 930px); } }
 .mover-2 { animation: boat2 170s linear -60s infinite; }
 @keyframes boat2 { from { transform: translate(1500px, 1520px); } to { transform: translate(2900px, 840px); } }
+.mover-2 { color: #ff6b4a; }
+.mover-3 { color: #fff; animation: boat3 140s linear -100s infinite; }
+@keyframes boat3 { from { transform: translate(2950px, 1110px); } to { transform: translate(1700px, 760px); } }
+.mover-4 { color: #ffd23f; animation: boat4 200s linear -40s infinite; }
+@keyframes boat4 { from { transform: translate(1450px, 1360px); } to { transform: translate(2950px, 1000px); } }
 .wake { animation: wake 1.6s ease-in-out infinite; }
 @keyframes wake { 50% { opacity: .35; } }
 .hero[data-phase="night"] .mover { opacity: .55; }
@@ -349,7 +363,7 @@ section { padding: clamp(56px, 9vw, 110px) 0; position: relative; }
 .footer { background: var(--sea-deep); color: #d9eef7; padding: 90px 0 40px; position: relative; margin-top: 40px; }
 .footer a { color: #fff; }
 .wave-top { position: absolute; top: -1px; left: 0; width: 100%; height: 70px; fill: var(--paper); }
-.footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; align-items: start; }
+.footer-grid { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; }
 .footer nav { display: flex; flex-direction: column; gap: 6px; }
 .f-brand { font: 700 1.8rem var(--display); color: #fff; margin: 0 0 .3rem; }
 .tiny { font-size: .78rem; opacity: .75; }
@@ -470,13 +484,13 @@ section { padding: clamp(56px, 9vw, 110px) 0; position: relative; }
 /* ---------- association & useful info pages ---------- */
 .syl-hero { background: linear-gradient(140deg, var(--sea-deep), var(--sea) 45%, #7b5cff); }
 .syl-hero .wrap { display: flex; align-items: center; gap: clamp(20px, 4vw, 48px); flex-wrap: wrap; }
-.syl-hero .logo { width: clamp(120px, 18vw, 190px); border-radius: 50%; box-shadow: 0 18px 40px -16px #000; background: #fff; }
+.syl-hero .logo { width: clamp(120px, 18vw, 190px); height: auto; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 18px 40px -16px #000; background: #fff; }
 .syl-hero .wrap > div { flex: 1 1 380px; }
 .syl-sec { padding: 46px 0; }
 .syl-sec:nth-of-type(even) { background: linear-gradient(180deg, transparent, var(--sand) 18%, var(--sand) 82%, transparent); }
 .syl-two { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 52px); align-items: start; }
 .syl-two figure { margin: 0; }
-.syl-two figure img { border-radius: var(--radius); box-shadow: var(--shadow); width: 100%; }
+.syl-two figure img { border-radius: var(--radius); box-shadow: var(--shadow); width: 100%; height: auto; display: block; }
 .syl-two figcaption { font-size: .85rem; color: var(--muted); margin-top: 8px; }
 @media (max-width: 860px) { .syl-two { grid-template-columns: 1fr; } }
 .syl-timeline { list-style: none; padding: 0; margin: 20px 0; display: grid; gap: 12px; }
@@ -789,3 +803,6 @@ a.feature:focus-visible { outline: 4px solid var(--sun); outline-offset: 3px; }
 /* beach facts: a row of five */
 @media (min-width: 1001px) { .hs-facts.five { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .hs-facts.five li:last-child { grid-column: 1 / -1; } }
+
+/* footer: brand on the left, Facebook and credits on the right */
+@media (min-width: 761px) { .footer .f-side { text-align: right; } }
