@@ -32,3 +32,10 @@
   RedirectMatch 301 ^/category/ /enimeroseis/
 </IfModule>
 # END old-wordpress
+
+# BEGIN english
+# /en/gyro/ (old Γύρω page) has no English version: open the compass page
+<IfModule mod_alias.c>
+  RedirectMatch 302 ^/en/gyro/?$ /en/gyro1/
+</IfModule>
+# END english

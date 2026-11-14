@@ -9,8 +9,10 @@ export default defineConfig({
     // every page becomes a real HTML file: /fotografies/index.html, /enimeroseis/<slug>/index.html …
     dirStyle: 'nested',
     formatting: 'none',
-    includedRoutes(paths) {
-      const pages = paths.filter((p) => !p.includes(':'));
+    includedRoutes(paths, routes) {
+      // addresses that only redirect (/en, /en/gyro/) get no page of their own
+      const redirects = new Set(routes.filter((r) => r.redirect).map((r) => r.path));
+      const pages = paths.filter((p) => !p.includes(':') && !redirects.has(p));
       return SHOW_UPDATES ? pages.concat(posts.posts.map((p) => `/enimeroseis/${p.slug}/`)) : pages;
     },
   },

@@ -16,6 +16,8 @@ if (hidden.length) {
     '# BEGIN hidden-parts (src/lib/options.js: ' + hidden.map((h) => h[1] + ' = false').join(', ') + ')',
     '<IfModule mod_alias.c>',
     ...hidden.map((h) => `  RedirectMatch 302 ${h[2]} /`),
+    // the same parts in English (/en/…) go to the English home page
+    ...hidden.map((h) => `  RedirectMatch 302 ${h[2].replace("^/", "^/en/")} /en/`),
     '</IfModule>',
     '# END hidden-parts',
     '',

@@ -3,7 +3,9 @@
     {
       "file": "o-kolpos",
       "title": "Ο κόλπος του Νημποριού",
+      "title_en": "The bay of Nimborio",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -13,7 +15,9 @@
     {
       "file": "apo-psila",
       "title": "Ο κόλπος και ο οικισμός από ψηλά",
+      "title_en": "The bay and the village from above",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -23,7 +27,9 @@
     {
       "file": "istioforo",
       "title": "Ιστιοφόρο στα γαλαζοπράσινα νερά",
+      "title_en": "A sailing boat on turquoise water",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -33,7 +39,9 @@
     {
       "file": "psathini-omprela",
       "title": "Ψάθινη ομπρέλα στην παραλία",
+      "title_en": "A straw umbrella on the beach",
       "category": "Παραλία",
+      "category_en": "Beach",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -43,7 +51,9 @@
     {
       "file": "varka-stin-ammo",
       "title": "Βάρκα στην ακτή",
+      "title_en": "A boat on the shore",
       "category": "Παραλία",
+      "category_en": "Beach",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -53,7 +63,9 @@
     {
       "file": "petres-kai-nera",
       "title": "Πέτρες και καθαρά νερά",
+      "title_en": "Stones and clear water",
       "category": "Παραλία",
+      "category_en": "Beach",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -63,7 +75,9 @@
     {
       "file": "votsala",
       "title": "Βότσαλα",
+      "title_en": "Pebbles",
       "category": "Παραλία",
+      "category_en": "Beach",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -73,7 +87,9 @@
     {
       "file": "iliovasilema",
       "title": "Ηλιοβασίλεμα στον Ευβοϊκό",
+      "title_en": "Sunset over the Euboean Gulf",
       "category": "Ηλιοβασιλέματα",
+      "category_en": "Sunsets",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -83,7 +99,9 @@
     {
       "file": "sourouro",
       "title": "Σούρουπο πάνω από τη θάλασσα",
+      "title_en": "Dusk over the sea",
       "category": "Ηλιοβασιλέματα",
+      "category_en": "Sunsets",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -93,7 +111,9 @@
     {
       "file": "varkoules-to-sourouro",
       "title": "Βαρκούλες στο σούρουπο",
+      "title_en": "Little boats at dusk",
       "category": "Ηλιοβασιλέματα",
+      "category_en": "Sunsets",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -103,7 +123,9 @@
     {
       "file": "o-oikismos-apo-to-vouno",
       "title": "Ο οικισμός από το βουνό",
+      "title_en": "The village from the mountain",
       "category": "Οικισμός",
+      "category_en": "Village",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -113,7 +135,9 @@
     {
       "file": "spitia-me-thea",
       "title": "Σπίτια με θέα στον Ευβοϊκό",
+      "title_en": "Houses looking over the Euboean Gulf",
       "category": "Οικισμός",
+      "category_en": "Village",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -123,7 +147,9 @@
     {
       "file": "ekklisaki",
       "title": "Το εκκλησάκι",
+      "title_en": "The little church",
       "category": "Οικισμός",
+      "category_en": "Village",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -133,7 +159,9 @@
     {
       "file": "pigadi",
       "title": "Το πηγάδι",
+      "title_en": "The well",
       "category": "Οικισμός",
+      "category_en": "Village",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -143,7 +171,9 @@
     {
       "file": "parathyro",
       "title": "Μπλε παράθυρο",
+      "title_en": "A blue window",
       "category": "Οικισμός",
+      "category_en": "Village",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -153,7 +183,9 @@
     {
       "file": "spiti-sto-kyma",
       "title": "Σπίτι δίπλα στο κύμα",
+      "title_en": "A house by the waves",
       "category": "Οικισμός",
+      "category_en": "Village",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -163,7 +195,9 @@
     {
       "file": "varkoula-ston-kolpo",
       "title": "Βαρκούλα στον κόλπο",
+      "title_en": "A little boat in the bay",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -173,7 +207,9 @@
     {
       "file": "kaiki",
       "title": "Καΐκι στον μόλο",
+      "title_en": "A fishing boat at the jetty",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -183,7 +219,9 @@
     {
       "file": "molos",
       "title": "Ο μόλος",
+      "title_en": "The jetty",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "",
       "placeholder": false,
@@ -193,7 +231,9 @@
     {
       "file": "thea-ston-evvoiko",
       "title": "Θέα στον Ευβοϊκό",
+      "title_en": "View over the Euboean Gulf",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -203,7 +243,9 @@
     {
       "file": "panorama",
       "title": "Πανόραμα του κόλπου",
+      "title_en": "Panorama of the bay",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -213,7 +255,9 @@
     {
       "file": "o-kolpos-apo-to-dromo",
       "title": "Ο κόλπος από τον δρόμο",
+      "title_en": "The bay from the road",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -223,7 +267,9 @@
     {
       "file": "monopati",
       "title": "Πέτρινο μονοπάτι",
+      "title_en": "A stone path",
       "category": "Φύση",
+      "category_en": "Nature",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2019",
       "placeholder": false,
@@ -233,7 +279,9 @@
     {
       "file": "archaios-kionas",
       "title": "Αρχαίος κίονας στα ρωμαϊκά λατομεία",
+      "title_en": "An ancient column in the Roman quarries",
       "category": "Ιστορία",
+      "category_en": "History",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2026",
       "placeholder": false,
@@ -243,7 +291,9 @@
     {
       "file": "palio-nimporio",
       "title": "Το παλιό Νημποριό",
+      "title_en": "Old Nimborio",
       "category": "Ιστορία",
+      "category_en": "History",
       "credit": "Αρχείο Δημήτρη Σινέκογλου",
       "date": "",
       "placeholder": false,
@@ -253,7 +303,9 @@
     {
       "file": "palio-spiti",
       "title": "Παλιό σπίτι στην ακτή",
+      "title_en": "An old house on the shore",
       "category": "Ιστορία",
+      "category_en": "History",
       "credit": "Αρχείο Δημήτρη Σινέκογλου",
       "date": "",
       "placeholder": false,
@@ -263,7 +315,9 @@
     {
       "file": "xoroi",
       "title": "Χοροί στο προαύλιο",
+      "title_en": "Dancing in the courtyard",
       "category": "Εκδηλώσεις",
+      "category_en": "Events",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2026",
       "placeholder": false,
@@ -273,7 +327,9 @@
     {
       "file": "therini-provoli",
       "title": "Θερινή προβολή",
+      "title_en": "Open-air summer cinema",
       "category": "Εκδηλώσεις",
+      "category_en": "Events",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2026",
       "placeholder": false,
@@ -283,7 +339,9 @@
     {
       "file": "simaia-syllogou",
       "title": "Η σημαία του Συλλόγου",
+      "title_en": "The Association’s flag",
       "category": "Εκδηλώσεις",
+      "category_en": "Events",
       "credit": "Αρχείο Συλλόγου Νημποριού",
       "date": "2026",
       "placeholder": false,
@@ -293,7 +351,9 @@
     {
       "file": "placeholder-01-paralia",
       "title": "Η αμμουδιά από ψηλά",
+      "title_en": "The beach from above",
       "category": "Παραλία",
+      "category_en": "Beach",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -303,7 +363,9 @@
     {
       "file": "placeholder-02-oikismos",
       "title": "Τα σπίτια του οικισμού",
+      "title_en": "The houses of the village",
       "category": "Οικισμός",
+      "category_en": "Village",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -313,7 +375,9 @@
     {
       "file": "placeholder-03-ammoudia",
       "title": "Χρυσή άμμος, τιρκουάζ νερά",
+      "title_en": "Golden sand, turquoise water",
       "category": "Παραλία",
+      "category_en": "Beach",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -323,7 +387,9 @@
     {
       "file": "placeholder-04-notioi-ormoi",
       "title": "Οι νότιοι όρμοι",
+      "title_en": "The southern coves",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -333,7 +399,9 @@
     {
       "file": "placeholder-05-kavos",
       "title": "Ο κάβος",
+      "title_en": "The cape",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -343,7 +411,9 @@
     {
       "file": "placeholder-06-anatoliki-akti",
       "title": "Η ανατολική ακτή",
+      "title_en": "The eastern shore",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -353,7 +423,9 @@
     {
       "file": "placeholder-07-kryfos-ormos",
       "title": "Ο κρυφός όρμος",
+      "title_en": "The hidden cove",
       "category": "Παραλία",
+      "category_en": "Beach",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -363,7 +435,9 @@
     {
       "file": "placeholder-08-vouna",
       "title": "Τα βουνά πάνω από τον κόλπο",
+      "title_en": "The mountains above the bay",
       "category": "Φύση",
+      "category_en": "Nature",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -373,7 +447,9 @@
     {
       "file": "placeholder-09-vathy-mple",
       "title": "Βαθύ μπλε",
+      "title_en": "Deep blue",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -383,7 +459,9 @@
     {
       "file": "placeholder-10-lofoi",
       "title": "Οι λόφοι στα δυτικά",
+      "title_en": "The hills to the west",
       "category": "Φύση",
+      "category_en": "Nature",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -393,7 +471,9 @@
     {
       "file": "placeholder-11-dromos",
       "title": "Ο δρόμος από τα Κάψαλα",
+      "title_en": "The road from Kapsala",
       "category": "Φύση",
+      "category_en": "Nature",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -403,7 +483,9 @@
     {
       "file": "placeholder-12-olos-o-kolpos",
       "title": "Όλος ο κόλπος",
+      "title_en": "The whole bay",
       "category": "Θάλασσα",
+      "category_en": "Sea",
       "credit": "",
       "date": "",
       "placeholder": true,
@@ -413,7 +495,9 @@
     {
       "file": "placeholder-13-xartis-day",
       "title": "Χάρτης του κόλπου (μέρα)",
+      "title_en": "Map of the bay (day)",
       "category": "Χάρτες",
+      "category_en": "Maps",
       "credit": "nimporio.gr / © OpenStreetMap",
       "date": "",
       "placeholder": true,
@@ -423,7 +507,9 @@
     {
       "file": "placeholder-14-xartis-night",
       "title": "Χάρτης του κόλπου (νύχτα)",
+      "title_en": "Map of the bay (night)",
       "category": "Χάρτες",
+      "category_en": "Maps",
       "credit": "nimporio.gr / © OpenStreetMap",
       "date": "",
       "placeholder": true,

@@ -19,7 +19,7 @@ export function beaufort(kmh) {
   while (b < t.length && kmh >= t[b]) b++;
   return b;
 }
-export const compass = (deg) => ['Β', 'ΒΑ', 'Α', 'ΝΑ', 'Ν', 'ΝΔ', 'Δ', 'ΒΔ'][Math.round(deg / 45) % 8];
+export const compass = (deg, en) => (en ? ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'] : ['Β', 'ΒΑ', 'Α', 'ΝΑ', 'Ν', 'ΝΔ', 'Δ', 'ΒΔ'])[Math.round(deg / 45) % 8];
 
 // Change the address bar without a page change and without losing Vue Router's own history state
 export function setHash(hash) {

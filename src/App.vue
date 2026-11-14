@@ -1,7 +1,11 @@
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
+import { isEn } from './lib/lang.js';
 
-useHead({ htmlAttrs: { lang: 'el' } });
+const route = useRoute();
+useHead({ htmlAttrs: { lang: computed(() => (isEn(route.path) ? 'en' : 'el')) } });
 </script>
 
 <template>

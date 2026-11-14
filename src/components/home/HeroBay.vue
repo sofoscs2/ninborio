@@ -2,14 +2,19 @@
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
 import { rand, reduceMotion } from '../../lib/util.js';
 import { useWeather, loadWeather } from '../../composables/useWeather.js';
+import { useLang } from '../../lib/lang.js';
 
-const wx = useWeather();
+const { en, t, href } = useLang();
+const wx = useWeather(en);
 const phase = ref('day');      // dawn · day · golden · dusk · night
 const choice = ref('auto');    // which button is pressed
 const ripples = ref([]), glitter = ref([]), lights = ref([]);
 const mediaStyle = reactive({}), copyStyle = reactive({});
 
-const BUTTONS = [
+const BUTTONS = en ? [
+  ['auto', '⏱️', 'Now', 'Now'], ['dawn', '🌄', 'Dawn', 'Dawn'], ['day', '☀️', 'Day', 'Day'],
+  ['golden', '🌇', 'Sunset', 'Sunset'], ['night', '🌙', 'Night', 'Night'],
+] : [
   ['auto', '⏱️', 'Τώρα', 'Τώρα'], ['dawn', '🌄', 'Αυγή', 'Αυγή'], ['day', '☀️', 'Μέρα', 'Μέρα'],
   ['golden', '🌇', 'Δύση', 'Ηλιοβασίλεμα'], ['night', '🌙', 'Νύχτα', 'Νύχτα'],
 ];
@@ -68,11 +73,11 @@ onBeforeUnmount(() => { clearInterval(timer); removeEventListener('scroll', onSc
 </script>
 
 <template>
-  <section class="hero" :data-phase="phase" :data-locked="choice === 'auto' ? null : '1'" aria-label="Ο κόλπος του Νημποριού από ψηλά">
+  <section class="hero" :data-phase="phase" :data-locked="choice === 'auto' ? null : '1'" :aria-label="t('Ο κόλπος του Νημποριού από ψηλά', 'The bay of Nimborio from above')">
     <div class="hero-media" :style="mediaStyle">
       <img class="hero-img" src="/assets/img/hero/bay-2000.webp"
            srcset="/assets/img/hero/bay-1200.webp 1200w, /assets/img/hero/bay-2000.webp 2000w, /assets/img/hero/bay-2800.webp 2800w"
-           sizes="100vw" width="2800" height="1500" alt="Ο κόλπος του Νημποριού από ψηλά: η αμμουδιά, ο οικισμός και τα βουνά της νότιας Εύβοιας">
+           sizes="100vw" width="2800" height="1500" :alt="t('Ο κόλπος του Νημποριού από ψηλά: η αμμουδιά, ο οικισμός και τα βουνά της νότιας Εύβοιας', 'The bay of Nimborio from above: the sandy beach, the village and the mountains of south Evia')">
       <div class="hero-tint" aria-hidden="true"></div>
 
       <!-- Overlay drawn on the same 2800×1500 frame as the photo -->
@@ -141,24 +146,23 @@ onBeforeUnmount(() => { clearInterval(timer); removeEventListener('scroll', onSc
     </div>
 
     <div class="hero-copy" :style="copyStyle">
-      <p class="eyebrow">Νότια Εύβοια · Κόλπος Πεταλιών</p>
-      <h1>Νημποριό</h1>
-      <p class="lead">Με το Σύλλογο Οικιστών κρατάμε την ομορφιά του κόλπου ζωντανή</p>
+      <p class="eyebrow">{{ t('Νότια Εύβοια · Κόλπος Πεταλιών', 'South Evia · Gulf of Petalioi') }}</p>
+      <h1>{{ t('Νημποριό', 'Nimborio') }}</h1>
+      <p class="lead">{{ t('Με το Σύλλογο Οικιστών κρατάμε την ομορφιά του κόλπου ζωντανή', 'With the Residents’ Association, we keep the beauty of the bay alive') }}</p>
       <div class="chips" aria-live="polite">
-        <span class="chip" id="chip-air">🌡️ <b>{{ wx.chipAir }}</b> αέρας</span>
-        <span class="chip" id="chip-sea">🌊 <b>{{ wx.chipSea }}</b> θάλασσα</span>
-        <span class="chip" id="chip-sun">🌅 δύση <b>{{ wx.chipSun }}</b></span>
+        <span class="chip" id="chip-air">🌡️ <b>{{ wx.chipAir }}</b> {{ t('αέρας', 'air') }}</span>
+        <span class="chip" id="chip-sea">🌊 <b>{{ wx.chipSea }}</b> {{ t('θάλασσα', 'sea') }}</span>
+        <span class="chip" id="chip-sun">🌅 {{ t('δύση', 'sunset') }} <b>{{ wx.chipSun }}</b></span>
       </div>
       <div class="cta">
-        <RouterLink class="btn btn-sun" to="/prosvasi/">Πώς θα έρθετε</RouterLink>
-        <a class="btn btn-ghost" href="#nea">Τα νέα μας</a>
+        <RouterLink class="btn btn-sun" :to="href('/prosvasi/')">{{ t('Πώς θα έρθετε', 'How to get here') }}</RouterLink>
+        <a class="btn btn-ghost" href="#nea">{{ t('Τα νέα μας', 'Our news') }}</a>
       </div>
     </div>
 
-    <div class="phase-switch" role="group" aria-label="Δες τον κόλπο σε άλλη ώρα">
+    <div class="phase-switch" role="group" :aria-label="t('Δες τον κόλπο σε άλλη ώρα', 'See the bay at another time of day')">
       <button v-for="[p, ico, label, title] in BUTTONS" :key="p" :data-phase="p" :aria-pressed="String(choice === p)" :title="title" @click="choose(p)">{{ ico }}<span>{{ label }}</span></button>
     </div>
-    <p class="credit">Εικόνα: δορυφορική λήψη <span class="todo">[πηγή/άδεια χρήσης]</span></p>
     <svg class="wave-edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C240 90 480 0 720 30 S1200 80 1440 30 V80 H0Z"/></svg>
   </section>
 </template>

@@ -1,12 +1,13 @@
 <script setup>
-import { useHead } from '@unhead/vue';
 import SiteLayout from '../components/SiteLayout.vue';
 import WaveEdge from '../components/WaveEdge.vue';
+import { usePage } from '../composables/usePage.js';
 
-useHead({
-  title: 'Χρήσιμες πληροφορίες & τηλέφωνα · Νημποριό Εύβοιας',
-  meta: [{ name: 'description', content: 'Τηλέφωνα έκτακτης ανάγκης, Δήμος Καρύστου, λιμεναρχεία, νοσοκομείο και πυροσβεστική για το Νημποριό Εύβοιας.' }],
-  link: [{ rel: 'canonical', href: 'https://nimborio.com/xrisima/' }],
+usePage({
+  path: '/xrisima/',
+  title: 'Χρήσιμες πληροφορίες',
+  fullTitle: 'Χρήσιμες πληροφορίες & τηλέφωνα · Νημποριό Εύβοιας',
+  description: 'Τηλέφωνα έκτακτης ανάγκης, Δήμος Καρύστου, λιμεναρχεία, νοσοκομείο και πυροσβεστική για το Νημποριό Εύβοιας.',
 });
 
 const SOS = [

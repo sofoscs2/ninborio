@@ -806,3 +806,9 @@ a.feature:focus-visible { outline: 4px solid var(--sun); outline-offset: 3px; }
 
 /* footer: brand on the left, Facebook and credits on the right */
 @media (min-width: 761px) { .footer .f-side { text-align: right; } }
+
+/* ---------- language button (EN / ΕΛ) ---------- */
+.top-tools { display: flex; align-items: center; gap: 8px; order: 3; }
+.lang-btn { display: inline-grid; place-items: center; min-width: 2.6em; height: 2.3em; padding: 0 .7em; border-radius: 999px; border: 2px solid rgba(255,255,255,.7); color: #fff; text-decoration: none; font-weight: 800; font-size: .85rem; letter-spacing: .04em; transition: background .2s, color .2s; }
+.lang-btn:hover, .lang-btn:focus-visible { background: #fff; color: var(--sea-deep); }
+.fb-lang-note { margin: -6px 0 14px; font-size: .9rem; opacity: .75; }

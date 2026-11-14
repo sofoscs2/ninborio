@@ -3,6 +3,11 @@ import { ref, reactive, computed, nextTick, onMounted, onBeforeUnmount } from 'v
 import { reduceMotion, FB_PAGE } from '../../lib/util.js';
 import { story, fmtDate } from '../../lib/fbPosts.js';
 import { openPost } from './NewsReader.vue';
+import { useLang } from '../../lib/lang.js';
+
+const { en, t } = useLang();
+const FB_LOCALE = en ? 'en_GB' : 'el_GR';
+const toStory = (p) => story(p, en);
 
 /* News from the Facebook Page.
    Default: the latest posts from /api/facebook.php, shown in the site's own design (3 first, then 4 more each time).
@@ -25,7 +30,7 @@ function loadSdk() {
     window.fbAsyncInit = () => { window.FB.init({ xfbml: false, version: 'v26.0' }); ok(window.FB); };
     const s = document.createElement('script');
     s.async = true; s.defer = true; s.crossOrigin = 'anonymous';
-    s.src = 'https://connect.facebook.net/el_GR/sdk.js';
+    s.src = 'https://connect.facebook.net/' + FB_LOCALE + '/sdk.js';
     s.onerror = fail;
     document.body.appendChild(s);
   });
@@ -56,7 +61,7 @@ function postLinks() {
 /* ---------- the site's own news design (?fb=site / ?fb=demo) ---------- */
 const POSTS = ref([]);
 const shown = ref(0);
-const stories = computed(() => POSTS.value.slice(0, shown.value).map(story));
+const stories = computed(() => POSTS.value.slice(0, shown.value).map(toStory));
 const visible = reactive(new Set());    // stories that have faded in
 const motion = ref(false);
 
@@ -84,12 +89,12 @@ function openFromHash() {
   const m = location.hash.match(/^#post-([\w-]+)$/);
   if (!m) return;
   const p = POSTS.value.find((x) => x.id === m[1]);
-  if (p) openPost(story(p));
+  if (p) openPost(toStory(p));
 }
 
 /* ---------- Facebook Page box ---------- */
 const pluginSrc = 'https://www.facebook.com/plugins/page.php?href=' + encodeURIComponent(FB_PAGE) +
-  '&tabs=timeline&width=500&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&locale=el_GR';
+  '&tabs=timeline&width=500&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&locale=' + FB_LOCALE;
 const renderPlugin = () => { mode.value = 'plugin'; };
 
 const more = () => (mode.value === 'embeds' ? embedMore() : showMore());
@@ -119,6 +124,7 @@ onBeforeUnmount(() => removeEventListener('hashchange', openFromHash));
 </script>
 
 <template>
+  <p v-if="en" class="fb-lang-note">Our posts are written in Greek.</p>
   <div class="fb-feed" :class="{ 'fb-embeds': mode === 'embeds' }" id="fb-feed" ref="feed" aria-live="polite">
     <template v-if="mode === 'loading'">
       <div class="fb-skeleton big"></div><div class="fb-skeleton"></div><div class="fb-skeleton"></div>
@@ -127,13 +133,12 @@ onBeforeUnmount(() => removeEventListener('hashchange', openFromHash));
     <template v-else-if="mode === 'embeds'">
       <div v-for="b in batches" :key="b.id" :ref="(el) => { if (el) batchEls[b.id] = el; }" v-memo="[b.id]">
         <div v-for="url in b.urls" :key="url" class="fb-post" :data-href="url" :data-width="String(b.width)" data-show-text="true">
-          <blockquote :cite="url" class="fb-xfbml-parse-ignore"><a :href="url">Ανάρτηση στο Facebook</a></blockquote>
+          <blockquote :cite="url" class="fb-xfbml-parse-ignore"><a :href="url">{{ t('Ανάρτηση στο Facebook', 'Post on Facebook') }}</a></blockquote>
         </div>
       </div>
     </template>
 
     <template v-else-if="mode === 'stories'">
-      <p v-if="demo" class="demo-note">Παράδειγμα: έτσι θα εμφανίζονται οι αναρτήσεις του Facebook όταν συνδεθεί η σελίδα. Τα κείμενα είναι δοκιμαστικά.</p>
       <article v-for="(p, k) in stories" :key="p.id" class="story" :class="{ featured: k === 0, reveal: motion, in: motion && visible.has(p.id) }">
         <div class="pic" :class="{ noimg: !p.imgs.length }">
           <img v-if="p.imgs.length" alt="" :loading="k === 0 ? 'eager' : 'lazy'" :src="p.imgs[0]">
@@ -142,18 +147,18 @@ onBeforeUnmount(() => removeEventListener('hashchange', openFromHash));
           <span v-if="p.imgs.length > 1" class="count">📷 {{ p.imgs.length }}</span>
         </div>
         <div class="txt">
-          <div class="meta"><span class="tag">{{ p.tag }}</span><time v-if="p.date" :datetime="p.date">{{ fmtDate(p.date) }}</time></div>
+          <div class="meta"><span class="tag">{{ p.tag }}</span><time v-if="p.date" :datetime="p.date">{{ fmtDate(p.date, en) }}</time></div>
           <h3><a :href="'#post-' + p.id">{{ p.title }}</a></h3>
           <p v-if="p.excerpt">{{ p.excerpt }}</p>
-          <span class="readmore" aria-hidden="true">Διαβάστε περισσότερα →</span>
+          <span class="readmore" aria-hidden="true">{{ t('Διαβάστε περισσότερα →', 'Read more →') }}</span>
         </div>
       </article>
     </template>
 
     <div v-else class="fb-plugin">
-      <iframe title="Οι αναρτήσεις της σελίδας Nimborio στο Facebook" loading="lazy" allow="encrypted-media" :src="pluginSrc"></iframe>
-      <div><h3>Οι τελευταίες αναρτήσεις μας</h3><p>Φωτογραφίες, εκδηλώσεις και ό,τι νέο συμβαίνει στο Νημποριό, κατευθείαν από τη σελίδα μας στο Facebook.</p></div>
+      <iframe :title="t('Οι αναρτήσεις της σελίδας Nimborio στο Facebook', 'Posts of the Nimborio page on Facebook')" loading="lazy" allow="encrypted-media" :src="pluginSrc"></iframe>
+      <div><h3>{{ t('Οι τελευταίες αναρτήσεις μας', 'Our latest posts') }}</h3><p>{{ t('Φωτογραφίες, εκδηλώσεις και ό,τι νέο συμβαίνει στο Νημποριό, κατευθείαν από τη σελίδα μας στο Facebook.', 'Photos, events and everything new in Nimborio, straight from our Facebook page.') }}</p></div>
     </div>
   </div>
-  <div class="more-wrap"><button class="btn btn-more" id="fb-more" :hidden="moreHidden" @click="more">Περισσότερα νέα</button></div>
+  <div class="more-wrap"><button class="btn btn-more" id="fb-more" :hidden="moreHidden" @click="more">{{ t('Περισσότερα νέα', 'More news') }}</button></div>
 </template>

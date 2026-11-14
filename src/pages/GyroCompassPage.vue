@@ -4,6 +4,9 @@ import 'leaflet/dist/leaflet.css';
 import SiteLayout from '../components/SiteLayout.vue';
 import WaveEdge from '../components/WaveEdge.vue';
 import { usePage } from '../composables/usePage.js';
+import { useLang } from '../lib/lang.js';
+
+const { en, t } = useLang();
 
 /* "Γύρω" as a compass over a satellite map: Νημποριό is point 0 in the centre, the map and the
    places turn together, and zooming shows the bay up close or the whole area. Places outside
@@ -11,9 +14,26 @@ import { usePage } from '../composables/usePage.js';
    arrow keys, or with the phone's own compass. */
 usePage({
   path: '/gyro1/',
-  title: 'Γύρω από τον κόλπο',
-  description: 'Μια πυξίδα πάνω σε δορυφορικό χάρτη, με κέντρο το Νημποριό: εξωκλήσια, παραλίες, Δρακόσπιτα, η Ακρόπολη των Στύρων, τα αρχαία λατομεία και τα γύρω χωριά, με απόσταση και κατεύθυνση.',
+  en,
+  title: t('Γύρω από τον κόλπο', 'Around the bay'),
+  description: t('Μια πυξίδα πάνω σε δορυφορικό χάρτη, με κέντρο το Νημποριό: εξωκλήσια, παραλίες, Δρακόσπιτα, η Ακρόπολη των Στύρων, τα αρχαία λατομεία και τα γύρω χωριά, με απόσταση και κατεύθυνση.',
+    'A compass over a satellite map, centred on Nimborio: chapels, beaches, the Dragon Houses, the Acropolis of Styra, the ancient quarries and the villages around, with distance and direction.'),
 });
+
+// English names and texts of the places below (by their Greek name)
+const EN = {
+  'Αϊ-Γιάννης': ['Agios Ioannis', 'The chapel of Saint John, at the southern end of the bay. Since the old days, neighbours from the villages around come down for its feast.'],
+  'Προφήτης Ηλίας': ['Profitis Ilias', 'The chapel of the Prophet Elijah, right by the waves. The summer feasts and dances are held in its paved courtyard.'],
+  'Παραλία Ντούκα': ['Douka beach', 'A small beach at the north-western end of the bay, for those who want a little privacy.'],
+  'Παραλία Πεύκο': ['Pefko beach', 'A quiet shore on the southern side of the bay.'],
+  'Δρακόσπιτο Καψάλων': ['Dragon House of Kapsala', 'One of the stone “dragon houses”, on the hill above Kapsala, the closest one to the bay.'],
+  'Ακρόπολη Στύρων': ['Acropolis of Styra', 'The remains of the ancient acropolis, high on the hill of Agios Nikolaos, with Roman quarries on its slopes.'],
+  'Δρακόσπιτα Στύρων': ['Dragon Houses of Styra', 'The best-known group of Dragon Houses in the area: boulders set one on top of another, with slab roofs that close like a pyramid.'],
+  'Νέα Στύρα': ['Nea Styra', 'The port where the ferry from Agia Marina docks, and the nearest big village for shopping.'],
+  'Στύρα': ['Styra', 'The mountain village, with its square and a view towards the little islands of Petalioi.'],
+  'Μαρμάρι': ['Marmari', 'The port with the ferry to Rafina, south-east of the bay.'],
+  'Αρχαία λατομεία': ['Ancient quarries', 'The Styrian stone has been cut here since ancient times. Among the quarry marks a column still lies on the ground.'],
+};
 
 const CENTER = { lat: 38.122518, lng: 24.213387, map: 'https://maps.app.goo.gl/Up8x8kMWxW1JgAwk9' };
 const PLACES = [
@@ -30,6 +50,8 @@ const PLACES = [
   { n: 11, ico: '⛏️', name: 'Αρχαία λατομεία', lat: 38.130028, lng: 24.223043, map: 'https://maps.app.goo.gl/UvCmbbtjsovX6hF96', text: 'Εδώ βγαίνει από την αρχαιότητα η Στυρία λίθος. Ανάμεσα στα ίχνη της εξόρυξης κείτεται ακόμα ένας κίονας.' },
 ];
 
+if (en) PLACES.forEach((p) => { const e = EN[p.name]; if (e) { p.name = e[0]; p.text = e[1]; } });
+
 /* ---------- geometry ---------- */
 const RAD = Math.PI / 180;
 function measure(p) {
@@ -44,11 +66,15 @@ function project(lat, lng, z) {
   const size = 256 * 2 ** z, s = Math.sin(lat * RAD);
   return [((lng + 180) / 360) * size, (0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * size];
 }
-const DIRS = ['Β', 'ΒΑ', 'Α', 'ΝΑ', 'Ν', 'ΝΔ', 'Δ', 'ΒΔ'];
-const DIR_NAMES = ['βόρεια', 'βορειοανατολικά', 'ανατολικά', 'νοτιοανατολικά', 'νότια', 'νοτιοδυτικά', 'δυτικά', 'βορειοδυτικά'];
+const DIRS = en ? ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'] : ['Β', 'ΒΑ', 'Α', 'ΝΑ', 'Ν', 'ΝΔ', 'Δ', 'ΒΔ'];
+const DIR_NAMES = en
+  ? ['north', 'north-east', 'east', 'south-east', 'south', 'south-west', 'west', 'north-west']
+  : ['βόρεια', 'βορειοανατολικά', 'ανατολικά', 'νοτιοανατολικά', 'νότια', 'νοτιοδυτικά', 'δυτικά', 'βορειοδυτικά'];
 const dirIndex = (deg) => Math.round(deg / 45) % 8;
-const fmtKm = (km) => (km < 1 ? Math.round(km * 100) * 10 + ' μ.' : km.toFixed(1).replace('.', ',') + ' χλμ');
-const fmtRing = (km) => (km < 1 ? km * 1000 + ' μ.' : km + ' χλμ');
+const fmtKm = (km) => (en
+  ? (km < 1 ? Math.round(km * 100) * 10 + ' m' : km.toFixed(1) + ' km')
+  : (km < 1 ? Math.round(km * 100) * 10 + ' μ.' : km.toFixed(1).replace('.', ',') + ' χλμ'));
+const fmtRing = (km) => (km < 1 ? km * 1000 + t(' μ.', ' m') : km + t(' χλμ', ' km'));
 
 // numbers 1…11 go from the nearest place to the furthest
 const BASE = PLACES.map((p) => {
@@ -216,12 +242,12 @@ async function toggleLive() {
   try {
     const D = window.DeviceOrientationEvent;
     if (D && typeof D.requestPermission === 'function' && (await D.requestPermission()) !== 'granted') {
-      liveNote.value = 'Χωρίς άδεια, η πυξίδα δεν μπορεί να ακολουθήσει το κινητό.'; return;
+      liveNote.value = t('Χωρίς άδεια, η πυξίδα δεν μπορεί να ακολουθήσει το κινητό.', 'Without permission, the compass can’t follow your phone.'); return;
     }
-  } catch { liveNote.value = 'Η πυξίδα του κινητού δεν είναι διαθέσιμη.'; return; }
+  } catch { liveNote.value = t('Η πυξίδα του κινητού δεν είναι διαθέσιμη.', 'Your phone’s compass is not available.'); return; }
   selected.value = null;
   live.value = true;
-  liveNote.value = 'Κρατήστε το κινητό οριζόντια και στρίψτε αργά γύρω σας.';
+  liveNote.value = t('Κρατήστε το κινητό οριζόντια και στρίψτε αργά γύρω σας.', 'Hold your phone flat and turn slowly around.');
   addEventListener('deviceorientationabsolute', onOrient);
   addEventListener('deviceorientation', onOrient);
 }
@@ -293,9 +319,16 @@ const labels = computed(() => {
   <SiteLayout>
     <section class="page-hero gyro-hero">
       <div class="wrap">
-        <p class="kicker">Γύρω από τον κόλπο</p>
-        <h1>Στρίψτε την <em>πυξίδα</em></h1>
-        <p>Στο κέντρο είναι το Νημποριό. Γυρίστε τον δίσκο, ή αφήστε το κινητό σας να τον γυρίσει, και κάντε ζουμ για να δείτε τι βρίσκεται προς κάθε μεριά: εξωκλήσια, παραλίες, Δρακόσπιτα, αρχαία και χωριά.</p>
+        <template v-if="en">
+          <p class="kicker">Around the bay</p>
+          <h1>Turn the <em>compass</em></h1>
+          <p>Nimborio is in the centre. Turn the dial, or let your phone turn it, and zoom to see what lies in each direction: chapels, beaches, Dragon Houses, ancient sites and villages.</p>
+        </template>
+        <template v-else>
+          <p class="kicker">Γύρω από τον κόλπο</p>
+          <h1>Στρίψτε την <em>πυξίδα</em></h1>
+          <p>Στο κέντρο είναι το Νημποριό. Γυρίστε τον δίσκο, ή αφήστε το κινητό σας να τον γυρίσει, και κάντε ζουμ για να δείτε τι βρίσκεται προς κάθε μεριά: εξωκλήσια, παραλίες, Δρακόσπιτα, αρχαία και χωριά.</p>
+        </template>
       </div>
       <WaveEdge />
     </section>
@@ -304,14 +337,14 @@ const labels = computed(() => {
       <section class="hs-sec cp-sec">
         <div class="wrap cp-grid">
           <div class="cp-stage">
-            <div class="cp-facing" aria-hidden="true"><span>μπροστά σας · {{ DIRS[dirIndex(facing)] }} {{ Math.round(facing) }}°</span></div>
+            <div class="cp-facing" aria-hidden="true"><span>{{ t('μπροστά σας', 'facing') }} · {{ DIRS[dirIndex(facing)] }} {{ Math.round(facing) }}°</span></div>
             <div ref="disc" class="cp-disc">
               <div class="cp-mapclip">
                 <div ref="mapEl" class="cp-map" :style="turnStyle"></div>
                 <div class="cp-shade"></div>
               </div>
               <svg ref="svg" class="cp-svg" viewBox="-480 -480 960 960" role="application" tabindex="0"
-                aria-label="Πυξίδα πάνω σε δορυφορικό χάρτη, με κέντρο το Νημποριό. Τα βέλη τη γυρίζουν, τα + και − κάνουν ζουμ."
+                :aria-label="t('Πυξίδα πάνω σε δορυφορικό χάρτη, με κέντρο το Νημποριό. Τα βέλη τη γυρίζουν, τα + και − κάνουν ζουμ.', 'Compass over a satellite map, centred on Nimborio. The arrow keys turn it; + and − zoom.')"
                 @pointerdown="down" @pointermove="move" @pointerup="up" @pointercancel="up" @wheel="wheel" @keydown="key">
                 <g class="cp-dial" :style="turnStyle">
                   <circle r="470" class="cp-rim" />
@@ -333,7 +366,7 @@ const labels = computed(() => {
                   </g>
                 </g>
                 <g class="cp-center" :class="{ cluster: HIDDEN.length }" :role="HIDDEN.length ? 'button' : null" :tabindex="HIDDEN.length ? 0 : null"
-                  :aria-label="HIDDEN.length ? `Ζουμ στον κόλπο: ${HIDDEN.length} ακόμα μέρη κοντά στο Νημποριό` : null"
+                  :aria-label="HIDDEN.length ? t(`Ζουμ στον κόλπο: ${HIDDEN.length} ακόμα μέρη κοντά στο Νημποριό`, `Zoom into the bay: ${HIDDEN.length} more places near Nimborio`) : null"
                   @click="openCluster" @keydown.enter.prevent="openCluster" @keydown.space.prevent="openCluster">
                   <circle r="20" class="cp-zero" />
                   <text y="7" class="cp-zero-n">0</text>
@@ -343,51 +376,51 @@ const labels = computed(() => {
                   </g>
                 </g>
               </svg>
-              <div class="cp-zoom" role="group" aria-label="Ζουμ">
-                <button type="button" aria-label="Μεγέθυνση" :disabled="zoom >= ZMAX" @click="zoomBy(0.75)">+</button>
-                <button type="button" aria-label="Σμίκρυνση" :disabled="zoom <= ZMIN" @click="zoomBy(-0.75)">−</button>
+              <div class="cp-zoom" role="group" aria-label="Zoom">
+                <button type="button" :aria-label="t('Μεγέθυνση', 'Zoom in')" :disabled="zoom >= ZMAX" @click="zoomBy(0.75)">+</button>
+                <button type="button" :aria-label="t('Σμίκρυνση', 'Zoom out')" :disabled="zoom <= ZMIN" @click="zoomBy(-0.75)">−</button>
               </div>
             </div>
             <div class="cp-tools">
-              <button type="button" class="btn btn-ghost-dark" @click="selected = null; turnTo(0)">⬆ Βορράς πάνω</button>
-              <button type="button" class="btn btn-ghost-dark" @click="zoomTo(ZMIN)">🔭 Όλη η περιοχή</button>
-              <button v-if="canLive" type="button" class="btn btn-sun" :aria-pressed="String(live)" @click="toggleLive">{{ live ? '✋ Σταμάτημα' : '🧭 Με την πυξίδα του κινητού' }}</button>
+              <button type="button" class="btn btn-ghost-dark" @click="selected = null; turnTo(0)">⬆ {{ t('Βορράς πάνω', 'North up') }}</button>
+              <button type="button" class="btn btn-ghost-dark" @click="zoomTo(ZMIN)">🔭 {{ t('Όλη η περιοχή', 'Whole area') }}</button>
+              <button v-if="canLive" type="button" class="btn btn-sun" :aria-pressed="String(live)" @click="toggleLive">{{ live ? t('✋ Σταμάτημα', '✋ Stop') : t('🧭 Με την πυξίδα του κινητού', '🧭 Use my phone’s compass') }}</button>
             </div>
-            <p class="cp-hint">{{ liveNote || (HIDDEN.length ? 'Πατήστε το 0 για να δείτε ξανά τα μέρη μέσα στον κόλπο.' : 'Σύρετε τον δίσκο για να τον γυρίσετε. Ζουμ με τα + και −, τη ροδέλα ή με δύο δάχτυλα.') }}</p>
-            <p class="cp-credit">Δορυφορική εικόνα: Esri, Maxar, Earthstar Geographics</p>
+            <p class="cp-hint">{{ liveNote || (HIDDEN.length ? t('Πατήστε το 0 για να δείτε ξανά τα μέρη μέσα στον κόλπο.', 'Tap the 0 to see the places in the bay again.') : t('Σύρετε τον δίσκο για να τον γυρίσετε. Ζουμ με τα + και −, τη ροδέλα ή με δύο δάχτυλα.', 'Drag the dial to turn it. Zoom with + and −, the mouse wheel or two fingers.')) }}</p>
+            <p class="cp-credit">{{ t('Δορυφορική εικόνα', 'Satellite image') }}: Esri, Maxar, Earthstar Geographics</p>
           </div>
 
           <aside class="cp-panel" aria-live="polite">
             <div class="hs-card cp-card">
               <template v-if="shown">
-                <p class="cp-card-kicker">{{ selected ? 'Επιλεγμένο σημείο' : 'Μπροστά σας' }}</p>
+                <p class="cp-card-kicker">{{ selected ? t('Επιλεγμένο σημείο', 'Selected place') : t('Μπροστά σας', 'In front of you') }}</p>
                 <h2><span aria-hidden="true">{{ shown.ico }}</span> {{ shown.name }}</h2>
                 <p class="cp-meta"><b>{{ fmtKm(shown.km) }}</b> {{ shown.dirName }} · {{ Math.round(shown.deg) }}°</p>
                 <p>{{ shown.text }}</p>
-                <a class="btn btn-sun" :href="shown.map" target="_blank" rel="noopener">📍 Στους Χάρτες Google</a>
+                <a class="btn btn-sun" :href="shown.map" target="_blank" rel="noopener">📍 {{ t('Στους Χάρτες Google', 'In Google Maps') }}</a>
               </template>
               <template v-else>
-                <p class="cp-card-kicker">Μπροστά σας</p>
-                <h2><span aria-hidden="true">🌊</span> Ανοιχτή θάλασσα ή βουνό</h2>
-                <p>Προς τα εκεί δεν έχουμε σημειώσει κάποιο μέρος. Γυρίστε τον δίσκο ή διαλέξτε ένα σημείο από τη λίστα.</p>
-                <a class="btn btn-ghost-dark" :href="CENTER.map" target="_blank" rel="noopener">📍 Το Νημποριό στους Χάρτες Google</a>
+                <p class="cp-card-kicker">{{ t('Μπροστά σας', 'In front of you') }}</p>
+                <h2><span aria-hidden="true">🌊</span> {{ t('Ανοιχτή θάλασσα ή βουνό', 'Open sea or mountain') }}</h2>
+                <p>{{ t('Προς τα εκεί δεν έχουμε σημειώσει κάποιο μέρος. Γυρίστε τον δίσκο ή διαλέξτε ένα σημείο από τη λίστα.', 'We haven’t marked a place in that direction. Turn the dial or choose a place from the list.') }}</p>
+                <a class="btn btn-ghost-dark" :href="CENTER.map" target="_blank" rel="noopener">📍 {{ t('Το Νημποριό στους Χάρτες Google', 'Nimborio in Google Maps') }}</a>
               </template>
             </div>
 
             <div class="cp-lists">
-              <h3>Μέσα στον κόλπο</h3>
+              <h3>{{ t('Μέσα στον κόλπο', 'In the bay') }}</h3>
               <ul class="cp-list">
                 <li v-for="p in NEAR" :key="p.n"><button type="button" :class="{ on: shown && shown.n === p.n }" @click="pick(p)">
                   <span class="cp-li-n">{{ p.n }}</span><span class="cp-li-name">{{ p.ico }} {{ p.name }}</span><span class="cp-li-d">{{ fmtKm(p.km) }} · {{ p.dir }}</span>
                 </button></li>
               </ul>
-              <h3>Πιο μακριά</h3>
+              <h3>{{ t('Πιο μακριά', 'Further away') }}</h3>
               <ul class="cp-list">
                 <li v-for="p in FAR" :key="p.n"><button type="button" :class="{ on: shown && shown.n === p.n }" @click="pick(p)">
                   <span class="cp-li-n">{{ p.n }}</span><span class="cp-li-name">{{ p.ico }} {{ p.name }}</span><span class="cp-li-d">{{ fmtKm(p.km) }} · {{ p.dir }}</span>
                 </button></li>
               </ul>
-              <p class="hs-note">Οι αποστάσεις είναι σε ευθεία γραμμή από την αμμουδιά του Νημποριού. Όσα μέρη δεν χωρούν στον κύκλο φαίνονται στην άκρη του, με ένα βελάκι προς την κατεύθυνσή τους.</p>
+              <p class="hs-note">{{ t('Οι αποστάσεις είναι σε ευθεία γραμμή από την αμμουδιά του Νημποριού. Όσα μέρη δεν χωρούν στον κύκλο φαίνονται στην άκρη του, με ένα βελάκι προς την κατεύθυνσή τους.', 'Distances are in a straight line from the beach of Nimborio. Places that don’t fit inside the circle sit on its edge, with a small arrow pointing their way.') }}</p>
             </div>
           </aside>
         </div>

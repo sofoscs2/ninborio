@@ -1,6 +1,9 @@
 <script setup>
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import 'leaflet/dist/leaflet.css';
+import { useLang } from '../lib/lang.js';
+
+const { t } = useLang();
 
 /* Map of the routes from Athens to Νημποριό. All routes are drawn; the chosen one is bold and the map zooms to it.
    Leaflet only runs in the browser, so it is loaded when the map appears. */
@@ -49,15 +52,15 @@ onMounted(async () => {
   const touch = matchMedia('(pointer: coarse)').matches;
   map = L.map(el.value, { scrollWheelZoom: false, dragging: !touch, tap: false, zoomSnap: .25, attributionControl: true });
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18, attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · διαδρομές: OSRM',
+    maxZoom: 18, attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · ' + t('διαδρομές', 'routes') + ': OSRM',
   }).addTo(map);
   map.attributionControl.setPrefix(false);
   // labels sit above the dots, so they are not cut at the edges of the map
   const narrow = el.value.offsetWidth < 600;
   const end = (at, name, big) => L.circleMarker(at, { radius: big ? 10 : 8, color: '#fff', weight: 3, fillColor: big ? '#ffb627' : '#0a4d7a', fillOpacity: 1 })
     .bindTooltip(name, { permanent: true, direction: 'top', offset: [0, -10], className: 'rm-tip rm-end' }).addTo(map);
-  end(props.data.start, narrow ? 'Αθήνα' : 'Αθήνα (Σύνταγμα)', false);
-  end(props.data.end, 'Νημποριό, 340 15', true);
+  end(props.data.start, narrow ? t('Αθήνα', 'Athens') : t('Αθήνα (Σύνταγμα)', 'Athens (Syntagma)'), false);
+  end(props.data.end, t('Νημποριό, 340 15', 'Nimborio, 340 15'), true);
   map.fitBounds(L.latLngBounds(props.data.routes[props.selected].legs.flatMap((l) => l.line)), { padding: [80, 50] });
   draw();
 });
@@ -67,11 +70,11 @@ onBeforeUnmount(() => { if (map) map.remove(); });
 
 <template>
   <div class="route-map">
-    <div ref="el" class="rm-canvas" role="img" aria-label="Χάρτης με τη διαδρομή από την Αθήνα ως το Νημποριό"></div>
+    <div ref="el" class="rm-canvas" role="img" :aria-label="t('Χάρτης με τη διαδρομή από την Αθήνα ως το Νημποριό', 'Map of the route from Athens to Nimborio')"></div>
     <p class="rm-legend">
-      <span><i class="rm-car"></i>με το αυτοκίνητο</span>
-      <span v-if="hasFerry"><i class="rm-ferry"></i>με το πλοίο</span>
-      <span class="rm-hint">Οι άλλες διαδρομές φαίνονται αχνά· πατήστε μία για να τη διαλέξετε.</span>
+      <span><i class="rm-car"></i>{{ t('με το αυτοκίνητο', 'by car') }}</span>
+      <span v-if="hasFerry"><i class="rm-ferry"></i>{{ t('με το πλοίο', 'by ferry') }}</span>
+      <span class="rm-hint">{{ t('Οι άλλες διαδρομές φαίνονται αχνά· πατήστε μία για να τη διαλέξετε.', 'The other routes are shown faintly; tap one to choose it.') }}</span>
     </p>
   </div>
 </template>

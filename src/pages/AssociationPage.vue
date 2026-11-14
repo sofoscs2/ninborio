@@ -1,13 +1,13 @@
 <script setup>
-import { useHead } from '@unhead/vue';
 import SiteLayout from '../components/SiteLayout.vue';
 import WaveEdge from '../components/WaveEdge.vue';
 import { SHOW_UPDATES } from '../lib/options.js';
+import { usePage } from '../composables/usePage.js';
 
-useHead({
-  title: 'Ο Σύλλογος · Νημποριό Εύβοιας',
-  meta: [{ name: 'description', content: 'Πολιτιστικός Φυσιολατρικός Αναπτυξιακός Σύλλογος Οικιστών Νημποριού Εύβοιας: ιστορία, Διοικητικό Συμβούλιο, καταστατικό και επικοινωνία.' }],
-  link: [{ rel: 'canonical', href: 'https://nimborio.com/syllogos/' }],
+usePage({
+  path: '/syllogos/',
+  title: 'Ο Σύλλογος',
+  description: 'Πολιτιστικός Φυσιολατρικός Αναπτυξιακός Σύλλογος Οικιστών Νημποριού Εύβοιας: ιστορία, Διοικητικό Συμβούλιο, καταστατικό και επικοινωνία.',
 });
 </script>
 

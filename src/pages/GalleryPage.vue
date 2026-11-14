@@ -1,19 +1,25 @@
 <script setup>
 import { ref, reactive, computed, nextTick, onMounted, onBeforeUnmount } from 'vue';
-import { useHead } from '@unhead/vue';
 import SiteLayout from '../components/SiteLayout.vue';
 import WaveEdge from '../components/WaveEdge.vue';
 import { setHash } from '../lib/util.js';
+import { useLang } from '../lib/lang.js';
+import { usePage } from '../composables/usePage.js';
 
-useHead({
-  title: 'Φωτογραφίες · Νημποριό Εύβοιας',
-  meta: [{ name: 'description', content: 'Ο κόλπος του Νημποριού σε φωτογραφίες: η αμμουδιά, η θάλασσα, ο οικισμός και η φύση γύρω του.' }],
-  link: [{ rel: 'canonical', href: 'https://nimborio.com/fotografies/' }],
+const { en, t } = useLang();
+usePage({
+  path: '/fotografies/',
+  en,
+  title: t('Φωτογραφίες', 'Photos'),
+  description: t('Ο κόλπος του Νημποριού σε φωτογραφίες: η αμμουδιά, η θάλασσα, ο οικισμός και η φύση γύρω του.', 'The bay of Nimborio in photos: the beach, the sea, the village and the nature around it.'),
 });
 
-/* Photo gallery with a full-screen viewer and zoom. The photos are listed in /assets/data/gallery.json. */
+/* Photo gallery with a full-screen viewer and zoom. The photos are listed in /assets/data/gallery.json
+   (title_en and category_en hold the English words). */
 const IMG = '/assets/img/gallery/';
-const ALL = 'Όλες';
+const ALL = t('Όλες', 'All');
+const CREDITS_EN = { 'Αρχείο Συλλόγου Νημποριού': 'Nimborio Association archive', 'Αρχείο Δημήτρη Σινέκογλου': 'Dimitris Sinekoglou archive' };
+const inLang = (p) => (en ? { ...p, title: p.title_en || p.title, category: p.category_en || p.category, credit: CREDITS_EN[p.credit] || p.credit } : p);
 const photos = ref([]);
 const failed = ref(false);
 const filter = ref(ALL);
@@ -24,7 +30,6 @@ const cats = computed(() => {
   return [[ALL, photos.value.length], ...Object.entries(counts)];
 });
 const list = computed(() => photos.value.filter((p) => filter.value === ALL || p.category === filter.value));
-const hasPlaceholders = computed(() => photos.value.some((p) => p.placeholder));
 
 /* ---------- viewer ---------- */
 const lb = ref(null), stage = ref(null), img = ref(null);
@@ -37,7 +42,7 @@ const opened = ref(false); // no photo is loaded until the viewer is first opene
 const photo = computed(() => (opened.value && list.value[current.value]) || null);
 const meta = computed(() => {
   const p = photo.value; if (!p) return '';
-  return [p.date, p.credit ? '📷 ' + p.credit : '', p.placeholder ? 'προσωρινή φωτογραφία' : '', p.w ? p.w + '×' + p.h : ''].filter(Boolean).join(' · ');
+  return [p.date, p.credit ? '📷 ' + p.credit : '', p.placeholder ? t('προσωρινή φωτογραφία', 'temporary photo') : '', p.w ? p.w + '×' + p.h : ''].filter(Boolean).join(' · ');
 });
 const imgStyle = computed(() => ({
   transition: anim.value ? 'transform .25s ease' : 'none',
@@ -154,7 +159,7 @@ const onResize = () => { if (lb.value && lb.value.open) { clamp(); anim.value = 
 
 onMounted(() => {
   fetch('/assets/data/gallery.json').then((r) => r.json()).then((data) => {
-    photos.value = data.photos || [];
+    photos.value = (data.photos || []).map(inLang);
     openFromHash();
   }).catch(() => { failed.value = true; });
   addEventListener('hashchange', openFromHash);
@@ -167,52 +172,52 @@ onBeforeUnmount(() => { removeEventListener('hashchange', openFromHash); removeE
   <SiteLayout>
     <section class="page-hero gallery-hero">
       <div class="wrap">
-        <p class="kicker" style="color:var(--sun)">Νημποριό · Νότια Εύβοια</p>
-        <h1>Ο κόλπος σε φωτογραφίες</h1>
-        <p>Θάλασσα, άμμος και φως από το Νημποριό. Πατήστε μια φωτογραφία για να τη δείτε μεγάλη και να κάνετε ζουμ στις λεπτομέρειες.</p>
+        <p class="kicker" style="color:var(--sun)">{{ t('Νημποριό · Νότια Εύβοια', 'Nimborio · South Evia') }}</p>
+        <h1>{{ t('Ο κόλπος σε φωτογραφίες', 'The bay in photos') }}</h1>
+        <p>{{ t('Θάλασσα, άμμος και φως από το Νημποριό. Πατήστε μια φωτογραφία για να τη δείτε μεγάλη και να κάνετε ζουμ στις λεπτομέρειες.', 'Sea, sand and light from Nimborio. Tap a photo to see it large and zoom in on the details.') }}</p>
       </div>
       <WaveEdge />
     </section>
 
     <main id="main" class="gallery-page">
       <div class="wrap">
-        <p class="demo-note" id="gal-placeholder-note" :hidden="!hasPlaceholders">Προσωρινές φωτογραφίες: θα αντικατασταθούν με πραγματικές φωτογραφίες του κόλπου.</p>
         <div class="gal-toolbar">
-          <div class="filters" id="filters" role="group" aria-label="Κατηγορίες">
+          <div class="filters" id="filters" role="group" :aria-label="t('Κατηγορίες', 'Categories')">
             <button v-for="([c, n], i) in cats" :key="c" :class="'chip-btn cat-' + (i % 6)" :aria-pressed="String(c === filter)" :data-cat="c" @click="filter = c">{{ c }} <span>{{ n }}</span></button>
           </div>
-          <span class="gal-total" id="gal-total">{{ photos.length ? list.length + (list.length === 1 ? ' φωτογραφία' : ' φωτογραφίες') : '' }}</span>
+          <span class="gal-total" id="gal-total">{{ photos.length ? list.length + (list.length === 1 ? t(' φωτογραφία', ' photo') : t(' φωτογραφίες', ' photos')) : '' }}</span>
         </div>
         <ul class="masonry" id="masonry" aria-live="polite">
-          <li v-if="failed" class="gal-empty">Οι φωτογραφίες δεν φορτώθηκαν. Δοκιμάστε ξανά σε λίγο.</li>
+          <li v-if="failed" class="gal-empty">{{ t('Οι φωτογραφίες δεν φορτώθηκαν. Δοκιμάστε ξανά σε λίγο.', 'The photos did not load. Please try again in a moment.') }}</li>
           <li v-for="(p, i) in list" :key="p.file">
             <a class="tile" :href="'#photo-' + p.file" :data-i="i" @click.prevent="open(i)">
               <img :src="IMG + p.file + '-thumb.webp'" :alt="p.title" loading="lazy" :width="p.w || 640" :height="p.h || 480">
               <span class="tile-info"><span class="tag">{{ p.category }}</span><strong>{{ p.title }}</strong></span>
-              <span v-if="p.placeholder" class="ph-badge">προσωρινή</span>
+              <span v-if="p.placeholder" class="ph-badge">{{ t('προσωρινή', 'temporary') }}</span>
               <span class="zoom-hint" aria-hidden="true">⤢</span>
             </a>
           </li>
         </ul>
-        <p class="gal-cta">Έχετε ωραίες φωτογραφίες από το Νημποριό; <a href="https://www.facebook.com/Nimborio/" target="_blank" rel="noopener">Στείλτε τες μας στο Facebook</a> και θα τις ανεβάσουμε με το όνομά σας.</p>
+        <p v-if="en" class="gal-cta">Do you have nice photos of Nimborio? <a href="https://www.facebook.com/Nimborio/" target="_blank" rel="noopener">Send them to us on Facebook</a> and we will add them with your name.</p>
+        <p v-else class="gal-cta">Έχετε ωραίες φωτογραφίες από το Νημποριό; <a href="https://www.facebook.com/Nimborio/" target="_blank" rel="noopener">Στείλτε τες μας στο Facebook</a> και θα τις ανεβάσουμε με το όνομά σας.</p>
       </div>
     </main>
 
     <!-- full-screen viewer -->
-    <dialog class="lightbox" id="lightbox" ref="lb" aria-label="Προβολή φωτογραφίας" @close="onClose" @keydown="onKey">
+    <dialog class="lightbox" id="lightbox" ref="lb" :aria-label="t('Προβολή φωτογραφίας', 'Photo viewer')" @close="onClose" @keydown="onKey">
       <div class="lb-stage" id="lb-stage" ref="stage" :class="{ zoomed: z.s > 1.01 }"
            @wheel.prevent="onWheel" @dblclick="onDbl" @pointerdown="down" @pointermove="move" @pointerup="end" @pointercancel="end">
         <img id="lb-img" ref="img" :alt="photo ? photo.title : ''" draggable="false" :src="photo ? IMG + photo.file + '.webp' : null" :style="imgStyle" @load="loading = false">
         <div class="lb-spinner" id="lb-spinner" aria-hidden="true" :hidden="!loading"></div>
       </div>
-      <button class="lb-btn lb-close" id="lb-close" aria-label="Κλείσιμο (Esc)" @click="close">✕</button>
-      <button class="lb-btn lb-prev" id="lb-prev" aria-label="Προηγούμενη (←)" :hidden="list.length < 2" @click="open(current - 1)">‹</button>
-      <button class="lb-btn lb-next" id="lb-next" aria-label="Επόμενη (→)" :hidden="list.length < 2" @click="open(current + 1)">›</button>
+      <button class="lb-btn lb-close" id="lb-close" :aria-label="t('Κλείσιμο (Esc)', 'Close (Esc)')" @click="close">✕</button>
+      <button class="lb-btn lb-prev" id="lb-prev" :aria-label="t('Προηγούμενη (←)', 'Previous (←)')" :hidden="list.length < 2" @click="open(current - 1)">‹</button>
+      <button class="lb-btn lb-next" id="lb-next" :aria-label="t('Επόμενη (→)', 'Next (→)')" :hidden="list.length < 2" @click="open(current + 1)">›</button>
       <div class="lb-tools">
-        <button class="lb-btn small" id="lb-zoom-out" aria-label="Σμίκρυνση (−)" @click="zoomAt(z.s / 1.6, 0, 0)">−</button>
+        <button class="lb-btn small" id="lb-zoom-out" :aria-label="t('Σμίκρυνση (−)', 'Zoom out (−)')" @click="zoomAt(z.s / 1.6, 0, 0)">−</button>
         <span id="lb-zoom-level">{{ Math.round(z.s * 100) }}%</span>
-        <button class="lb-btn small" id="lb-zoom-in" aria-label="Μεγέθυνση (+)" @click="zoomAt(z.s * 1.6, 0, 0)">+</button>
-        <button class="lb-btn small wide" id="lb-zoom-fit" aria-label="Προσαρμογή στην οθόνη (0)" @click="resetZoom">Όλη</button>
+        <button class="lb-btn small" id="lb-zoom-in" :aria-label="t('Μεγέθυνση (+)', 'Zoom in (+)')" @click="zoomAt(z.s * 1.6, 0, 0)">+</button>
+        <button class="lb-btn small wide" id="lb-zoom-fit" :aria-label="t('Προσαρμογή στην οθόνη (0)', 'Fit to screen (0)')" @click="resetZoom">{{ t('Όλη', 'Fit') }}</button>
       </div>
       <div class="lb-caption">
         <div>
